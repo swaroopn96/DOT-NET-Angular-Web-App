@@ -27,6 +27,8 @@ namespace DOT_NET_Angular_Web_App
         {
 
             services.AddControllers();
+            services.AddSwaggerGen(x => { x.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "WebAPIv5", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -35,6 +37,9 @@ namespace DOT_NET_Angular_Web_App
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                //Added by Swaroop
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebAPIv5 v1"));
             }
 
             app.UseHttpsRedirection();
